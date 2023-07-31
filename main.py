@@ -27,7 +27,7 @@ async def extract_youtube_data(video_url: str):
     }
 
 async def connect_to_database():
-    connection_uri = f"postgresql://{PG_USER}:{PG_PASSWORD}@{PG_HOST}:{PG_PORT}/{PG_DATABASE}"
+    connection_uri = f"postgresql://{PGUSER}:{PGPASSWORD}@{PG_HOST}:{PGPORT}/{PGDATABASE}"
     return await asyncpg.connect(dsn=connection_uri)
 
 
