@@ -18,3 +18,4 @@ urllib3==2.0.4
 uvicorn==0.23.1
 youtube-transcript-api==0.6.1
 hypercorn==0.14.4
+asyncpg==0.24.0
