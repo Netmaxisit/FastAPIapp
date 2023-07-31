@@ -44,7 +44,7 @@ async def shutdown_event():
 @app.get("/")
 async def read_root():
     try:
-       await app.startup() 
+        await app.startup() 
         # Your actual route logic here
         return {"Hello": "World!"}
     except Exception as e:
