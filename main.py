@@ -10,7 +10,6 @@ async def root():
    try:
         # Call the startup event from within the route (not recommended)
         await app.startup()  # This will trigger the startup event and connect to the database
-
         # Your actual route logic here
         return {"Hello": "World!"}
     except Exception as e:
