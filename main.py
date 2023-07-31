@@ -5,15 +5,6 @@ import asyncpg
 
 app = FastAPI()
 
-@app.get("/")
-async def root():
-   try:
-        # Call the startup event from within the route (not recommended)
-      await app.startup()  # This will trigger the startup event and connect to the database
-        # Your actual route logic here
-      return {"Hello": "World!"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
 
 def get_youtube_data(video_url):
     try:
@@ -49,3 +40,12 @@ async def startup_event():
 @app.on_event("shutdown")
 async def shutdown_event():
     await app.state.db.close()
+
+@app.get("/")
+async def read_root():
+    try:
+       await app.startup() 
+        # Your actual route logic here
+        return {"Hello": "World!"}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
