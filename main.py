@@ -9,9 +9,9 @@ app = FastAPI()
 async def root():
    try:
         # Call the startup event from within the route (not recommended)
-        await app.startup()  # This will trigger the startup event and connect to the database
+      await app.startup()  # This will trigger the startup event and connect to the database
         # Your actual route logic here
-        return {"Hello": "World!"}
+      return {"Hello": "World!"}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
