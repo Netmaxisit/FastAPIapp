@@ -1,7 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from pytube import YouTube
 from youtube_transcript_api import YouTubeTranscriptApi
-import asyncpg
+
 
 app = FastAPI()
 
@@ -26,26 +26,8 @@ async def extract_youtube_data(video_url: str):
         "text_transcript": text_transcript
     }
 
-async def connect_to_database():
-    connection_uri = f"postgresql://{PGUSER}:{PGPASSWORD}@{PG_HOST}:{PGPORT}/{PGDATABASE}"
-    return await asyncpg.connect(dsn=connection_uri)
 
-
-@app.on_event("startup")
-async def startup_event():
-    app.state.db = await connect_to_database()
-    print("Connected to PostgreSQL database!")
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    await app.state.db.close()
 
 @app.get("/")
-async def read_root():
-    try:
-        await app.startup() 
-        # Your actual route logic here
-        return {"Hello": "World!"}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+def read_root():
+    return {"Hello": "World!"}
