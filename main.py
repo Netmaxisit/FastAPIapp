@@ -28,7 +28,7 @@ def extract_video_id(url: str) -> str:
                 return path_parts[1]
     return ""
 
-@app.get("/transcript/")
+@app.post("/transcript/")
 async def get_transcript(url: str = Query(..., description="YouTube video URL")):
     video_id = extract_video_id(url)
     if not video_id:
