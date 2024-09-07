@@ -7,6 +7,12 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
+# Install system dependencies needed to build some Python packages
+RUN apt-get update && apt-get install -y gcc libpq-dev
+
+# Upgrade pip to the latest version
+RUN pip install --upgrade pip
+
 # Install FastAPI and Uvicorn dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
