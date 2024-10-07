@@ -5,6 +5,10 @@ from youtube_transcript_api.formatters import JSONFormatter
 
 app = FastAPI()
 
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+    
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
