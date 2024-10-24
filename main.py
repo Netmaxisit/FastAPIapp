@@ -8,7 +8,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World APi"}
+    return {"Hello": "World APi-2.0"}
     
 # Add CORS middleware
 app.add_middleware(
@@ -43,7 +43,5 @@ async def get_transcript(url: str = Query(..., description="YouTube video URL"))
         formatter = JSONFormatter()
         formatted_transcript = formatter.format_transcript(transcript)
         return {"transcript": formatted_transcript}
-    except YouTubeTranscriptApi.CouldNotRetrieveTranscript as e:
-        raise HTTPException(status_code=404, detail="Transcript not available for this video.")
-    except Exception as e:
+    except Exception as e:  # Catch any generic exception
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
