@@ -32,6 +32,8 @@ def extract_video_id(url: str) -> str:
                 return path_parts[1]
     return ""
 
+# Modify this route to accept both GET and POST requests
+@app.get("/transcript/")
 @app.post("/transcript/")
 async def get_transcript(url: str = Query(..., description="YouTube video URL")):
     video_id = extract_video_id(url)
